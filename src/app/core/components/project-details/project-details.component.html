@@ -1,0 +1,99 @@
+<main class="w-full h-screen bg-project overflow-auto">
+    <nav class="flex justify-between p-5">
+        <div>
+            <h1 class="text-white text-4xl">{{project.title}}</h1>
+            <p class="text-white">{{project.description}}</p>
+        </div>
+        <div>
+            <ul class="flex gap-5">
+                <a class="text-white" href="">Edit</a>
+                <button class="text-white">Delete</button>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-endpoint m-10 rounded-md p-5">
+        <header class="flex justify-between items-center w-full">
+            <h2 class="text-white text-2xl" >Endpoints</h2>
+            <button (click)="visible=true" class="text-white p-3 bg-succes rounded-md">Create Endpoint</button>
+        </header>
+
+        <div>
+            @for (item of project.endpoints; track $index) {
+                <app-endpoint ($endpoint)="onEvent($event)"  [database]="project.iddatabaseNavigation" [endpoint]="item"></app-endpoint>
+                
+            }
+        </div>
+    </section>
+
+    <section class="bg-endpoint m-10 rounded-md p-5">
+        <header class="flex justify-between items-center w-full">
+            <h2 class="text-white text-2xl">Database Configuration</h2>
+        </header>
+
+        <div class="flex mt-10">
+            <div class="w-3/12">
+                <label class="block text-white" for="">Host</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.host" type="text">
+            </div>
+            <div class="w-3/12 ml-3">
+                <label class="block text-white" for="">DB Engine</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.dbengine" type="text">
+            </div>
+            
+            <div class="w-3/12 ml-3">
+                <label class="block text-white" for="">Port</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.port" type="text">
+            </div>
+        </div>
+
+        <div class="flex">
+            
+            <div class="w-4/12">
+                <label class="block text-white" for="">User</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.user" type="text">
+            </div>
+
+            
+            <div class="w-4/12 ml-3">
+                <label class="block text-white" for="">Password</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.password" type="password">
+            </div>
+        </div>
+
+        <div>
+            
+            <div class="w-6/12">
+                <label class="block text-white" for="">Database</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.database1" type="text">
+            </div>
+        </div>
+
+    </section>
+
+    @if (visible) {
+        <p-dialog
+            header="Create project"
+            [(visible)]="visible" 
+            [modal]="true" 
+            [style]="{ width: '35%' }">
+
+                <div class="bg-neutral-900">
+                    <form (submit)="onSubmit($event)" class="flex flex-col align-middle bg-neutral-900">
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.httpMethod" placeHolder="Http Method" icon="fa-solid fa-globe" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.url" placeHolder="Url" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.query" placeHolder="Query" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.idProject" placeHolder="idProject" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.params" placeHolder="Params" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <div class="m-5 rounded-md shadow mt-5">
+                            <button
+                                class="w-full flex items-center justify-center text-lg p-3 border border-transparent font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 ">
+                                Create endpoint
+                            </button> 
+                        </div>
+                    </form>
+                </div>
+        </p-dialog>
+    }
+</main>

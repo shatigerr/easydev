@@ -1,0 +1,45 @@
+<main class="w-full h-screen  bg-project">
+    <nav class="flex justify-between p-5">
+        <img class="w-52" src="assets/logo.png" alt="easydev">
+        <div>
+            <ul class="flex gap-5">
+                <button (click)="showDialog()">Create project</button>
+                <button><li class="text-white">Sign out</li></button>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="flex">
+        @for (item of projects; track $index) {
+            <app-project-card [project]="item" class="m-8 w-3/12"></app-project-card>
+        }
+    </section>
+
+    
+        <p-dialog
+            header="Create project"
+            [(visible)]="visible" 
+            [modal]="true" 
+            [style]="{ width: '35%' }">
+
+                <div class="bg-neutral-900">
+                    <form (submit)="onSubmit($event)" class="flex flex-col align-middle bg-neutral-900">
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.projectName" placeHolder="Project name" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.projectDescription" placeHolder="Description" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbHost" placeHolder="Host" icon="fa-solid fa-database" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbName" placeHolder="Database Name" icon="fa-solid fa-database" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbPort" placeHolder="port" icon="fa-solid fa-server" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbUser" placeHolder="user" icon="fa-solid fa-user" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbPassword" placeHolder="password" icon="fa-solid fa-lock" type="password" ></app-custom-input>
+                        <div class="m-5 rounded-md shadow mt-5">
+                            <button
+                                class="w-full flex items-center justify-center text-lg p-3 border border-transparent font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 ">
+                                Pick a game
+                            </button> 
+                        </div>
+                    </form>
+                </div>
+        </p-dialog>
+    
+    
+</main>

@@ -1,0 +1,33 @@
+<div class="flex items-center justify-between mt-10">
+    <div class="flex">
+        <h2 [class]="css" class="rounded-md p-3 px-4"> {{endpoint.httpMethod}} </h2>
+        <h2 class="text-white bg-discord p-3 rounded-md text-xl">http://localhost:4200{{endpoint.url}}</h2>
+        @for (item of paramsArr; track $index) {
+            <div>
+                <input class="p-3 rounded-md ml-5 placeholder:to-white text-white bg-gray-700"  [placeholder]="item"  [(ngModel)]="paramsObj[item]" type="text">
+            </div>
+        }
+    </div>
+    
+    <div>
+        <button class="text-white bg-put p-3 px-4 rounded-md mr-2"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button (click)="onDelete()"  class="text-white bg-delete p-3 px-4 rounded-md"><i class="fa-solid fa-trash"></i></button>
+        <button (click)="onProcess()" class="text-white bg-post p-3 px-4 rounded-md ml-2"><i class="fa-solid fa-gears"></i></button>
+    </div>
+</div>
+@if (response) {
+    <div class="bg-nb rounded-md">
+        <code>
+            @for (item of response; track $index) {
+                <div class="m-4 p-2 ">
+                <span class="m-5 text-white">[{{$index}}]</span>
+                @for (key of getKeys(item); track $index) {
+                    <p class="ml-9 text-white"><strong>{{key}}:</strong> {{item[key]}}</p>
+                }
+                </div>
+            }
+        </code>
+    </div>
+}
+
+

@@ -31,7 +31,6 @@ export class ProjectDetailsComponent implements OnInit {
     httpMethod:new FormControl(""),
     url:new FormControl(""),
     query:new FormControl(""),
-    idProject:new FormControl(""),
     params:new FormControl("")
   })
 
@@ -61,7 +60,7 @@ export class ProjectDetailsComponent implements OnInit {
       httpMethod: this.endpointForm.value.httpMethod,
       url: this.endpointForm.value.url,
       query: this.endpointForm.value.query,
-      idProject: this.endpointForm.value.idProject,
+      idProject: this.project.id,
       params: this.endpointForm.value.params
     })
     .subscribe(res => {

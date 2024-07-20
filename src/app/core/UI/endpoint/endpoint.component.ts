@@ -46,6 +46,7 @@ export class EndpointComponent implements OnInit {
 
   onDelete(){
     this.apiService.delete(`api/Endpoint/${this.endpoint.id}`).subscribe(res => console.log(res))
+    this.$endpoint.emit(this.endpoint)
   }
 
   httpMethod(method: string): string{

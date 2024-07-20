@@ -6,9 +6,11 @@ import { ProjectDetailsComponent } from './core/components/project-details/proje
 
 
 export const routes: Routes = [
-    {path:"login",component:LoginComponent},
-    {path:"signup",component:SignupComponent},
-    {path:"projects/:id",component:ProjectsComponent},
-    {path:"projects/:id/:projectid",component:ProjectDetailsComponent},
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: 'projects/:id', component: ProjectsComponent },
+    { path: 'projects/:id/:projectid', component: ProjectDetailsComponent },
+    { path: '**', redirectTo: 'login' }
     
 ];

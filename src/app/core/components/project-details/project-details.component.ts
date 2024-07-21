@@ -6,14 +6,14 @@ import { EndpointComponent } from '../../UI/endpoint/endpoint.component';
 import Endpoint from '../../../../types/Endpoint';
 import Database from '../../../../types/Database';
 import { DialogModule } from 'primeng/dialog';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CustomInputComponent } from '../../UI/custom-input/custom-input.component';
 
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [EndpointComponent,DialogModule,CustomInputComponent],
+  imports: [EndpointComponent,DialogModule,CustomInputComponent,ReactiveFormsModule],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })
@@ -28,7 +28,7 @@ export class ProjectDetailsComponent implements OnInit {
   visible:boolean=false
 
   endpointForm = new FormGroup({
-    httpMethod:new FormControl(""),
+    httpMethod:new FormControl("GET"),
     url:new FormControl(""),
     query:new FormControl(""),
     params:new FormControl("")

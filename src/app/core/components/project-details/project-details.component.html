@@ -81,10 +81,16 @@
 
                 <div class="bg-neutral-900">
                     <form (submit)="onSubmit($event)" class="flex flex-col align-middle bg-neutral-900">
-                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.httpMethod" placeHolder="Http Method" icon="fa-solid fa-globe" type="text" ></app-custom-input>
-                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.url" placeHolder="Url" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
-                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.query" placeHolder="Query" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
-                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.params" placeHolder="Params" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <!-- <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.httpMethod" placeHolder="Http Method" icon="fa-solid fa-globe" type="text" ></app-custom-input> -->
+                         <select [formControl]="endpointForm.controls.httpMethod"  class="bg-white p-3 rounded-md mx-5 my-3" name="httpMethod" id="">
+                            <option selected value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                         </select>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.url" placeHolder="Endpoint name" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.query" placeHolder="SQL Query" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <app-custom-input class="modal mx-5 my-1" [control]="endpointForm.controls.params" placeHolder="Params example: id:int,title:string" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
                         <div class="m-5 rounded-md shadow mt-5">
                             <button
                                 class="w-full flex items-center justify-center text-lg p-3 border border-transparent font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 ">

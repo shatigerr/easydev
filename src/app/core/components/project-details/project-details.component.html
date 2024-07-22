@@ -22,7 +22,7 @@
 
         <div>
             @for (item of project.endpoints; track $index) {
-                <app-endpoint ($endpoint)="onEvent($event)"  [database]="project.iddatabaseNavigation" [endpoint]="item"></app-endpoint>
+                <app-endpoint ($endpoint)="onEvent($event)" key="{project key}"  [database]="project.iddatabaseNavigation" [endpoint]="item"></app-endpoint>
                 
             }
         </div>
@@ -65,10 +65,15 @@
 
         <div>
             
-            <div class="w-6/12">
+            <div class="w-3/12">
                 <label class="block text-white" for="">Database</label>
                 <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.database1" type="text">
             </div>
+
+        </div>
+        <div class="w-6/12">
+            <label class="block text-white" for="">Project key</label>
+            <input class="bg-discord text-white p-3 w-full" [value]="project.key" type="text">
         </div>
 
     </section>

@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between mt-10">
     <div class="flex">
         <h2 [class]="css" class="rounded-md p-3 px-4"> {{endpoint.httpMethod}} </h2>
-        <h2 class="text-white bg-discord p-3 rounded-md text-xl">https://easydev-node.vercel.app/{{endpoint.url}}</h2>
+        <h2 class="text-white bg-discord p-3 rounded-md text-xl">https://easydev-node.vercel.app/{{key}}/{{endpoint.idProject}}/{{endpoint.url}}</h2>
         @for (item of paramsArr; track $index) {
             <div>
                 <input class="p-3 rounded-md ml-5 placeholder:to-white text-white bg-gray-700"  [placeholder]="item"  [(ngModel)]="paramsObj[item]" type="text">

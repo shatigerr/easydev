@@ -19,7 +19,7 @@ export class EndpointComponent implements OnInit {
 
   @Input() endpoint!:Endpoint;
   @Input() database!:Database;
-
+  @Input() key!:string;
   @Output() $endpoint = new EventEmitter<Endpoint>()
 
   visible:boolean=false;

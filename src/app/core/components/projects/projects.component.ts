@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { CustomInputComponent } from "../../UI/custom-input/custom-input.component";
 import { FormControl, FormGroup } from '@angular/forms';
 import Database from '../../../../types/Database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -34,16 +35,18 @@ export class ProjectsComponent implements OnInit {
     dbPassword:new FormControl("")
   })
 
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService,private router:Router){}
 
   ngOnInit(): void {
     let userId = localStorage.getItem("user");
-    this.apiService.get<Project[]>(`api/Project/${userId}`)
-    .subscribe(res => {
-      
-      this.projects = res;
-      console.log(this.projects);
-    })
+    if(userId != null){
+      this.apiService.get<Project[]>(`api/Project/${userId}`)
+      .subscribe(res => {
+        this.projects = res;
+        console.log(this.projects);
+      })
+    } 
+    else this.router.navigate(["/login"])
   }
 
   onSubmit(e:Event){
@@ -69,7 +72,9 @@ export class ProjectsComponent implements OnInit {
         description:this.projectForm.value.projectDescription,
         idUser:idUser,
         iddatabase:res.id
-      }).subscribe(res => console.log(res))
+      }).subscribe(res => {
+        this.projectForm.reset(this.projectForm.value)
+      })
   
     })
 

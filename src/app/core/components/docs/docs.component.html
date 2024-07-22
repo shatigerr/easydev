@@ -1,0 +1,47 @@
+<main class="h-screen w-full text-white flex bg-discord">
+    <section class="bg-nb w-2/12 p-2 ">
+        <h2 class="text-2xl">easydev DOCS</h2>
+    </section>
+    <section class="overflow-auto">
+        <div>
+            <h2 class="text-3xl p-3">How to create a project</h2>
+            <p class="p-2">After login in to the platform you will se a button at the top right of the page with the text "Create porject" 
+                Click that button you will see how a form appears at the center of the page you need to fill out the form but first some requirements
+            </p> 
+            <p class="p-2">
+                1. Have a Database hosted on internet <br>
+            </p>
+            <p class="p-2">
+                2. This Database needs to be POSTGRESQL
+            </p>
+        </div>
+            
+        <div >
+            <h2 class="text-3xl p-3">How to create Endpoints</h2>
+            <p class="p-2">Once you have created a project and entered you will se the title of the project an empty list of Endpoint and the Database Configuration
+                for creating a Endpoint click the button "Create Endpoint" when you click a form will appear at the center of the screen
+            </p> 
+            <p class="p-2">
+                This are important things to know when you are filling the new Endpoint Form
+            </p>
+            <p class="p-2">
+                1. URL is the name of the endpoint for example getProducts, insertArticles etc...
+            </p>
+            <p class="p-2">
+                2. in the SQL Query if you want to add parameters to it you need to put a '?' where you want to pass the argument always with space between the '?' and other characters <br>
+                for example: <br>
+                SELECT * FROM table WHERE id = ? <br>
+                INSERT INTO table VALUES ( ? , ? ) <br>
+                DELETE FROM table WHERE id = ?
+            </p>
+            <p>3. The params need to be writed in a special way this is an example "param1:int,param2:string" you need to put the param name and declare the type string or int the param1 needs to be the column name of the table, if you want more than 1 you will need a ',' to separate each param but wihout any spaces  </p>
+        </div>
+        
+        <div>
+            <p>This forms are an example of an Endpoint creation totally valid</p>
+            <img class="p-3 w-72" src="assets/formExample1.png" alt="">
+            <img class="p-3 w-72" src="assets/formExample2.png" alt="">
+        </div>
+
+    </section>
+</main>

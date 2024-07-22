@@ -66,7 +66,7 @@ export class ProjectDetailsComponent implements OnInit {
     .subscribe(res => {
       this.visible=false
       this.project.endpoints.push(res)
-      
+      this.endpointForm.reset(this.endpointForm.value)
     })
   }
 

@@ -3,6 +3,7 @@ import { LoginComponent } from './core/components/login/login.component';
 import { SignupComponent } from './core/components/signup/signup.component';
 import { ProjectsComponent } from './core/components/projects/projects.component';
 import { ProjectDetailsComponent } from './core/components/project-details/project-details.component';
+import { DocsComponent } from './core/components/docs/docs.component';
 
 
 export const routes: Routes = [
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'projects/:id', component: ProjectsComponent },
     { path: 'projects/:id/:projectid', component: ProjectDetailsComponent },
+    { path: 'docs',component:DocsComponent},
     { path: '**', redirectTo: 'login' }
     
 ];

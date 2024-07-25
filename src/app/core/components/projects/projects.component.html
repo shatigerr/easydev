@@ -41,6 +41,8 @@
                     </form>
                 </div>
         </p-dialog>
-    
+        @if (notiParam) {
+            <app-notification [param]="notiParam" ></app-notification>
+        }
     
 </main>

@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule,FormGroup,FormControl } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { NotificationComponent } from '../../UI/notification/notification.component';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CustomInputComponent,CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CustomInputComponent,CommonModule,FormsModule,ReactiveFormsModule,NotificationComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -20,7 +22,9 @@ export class SignupComponent {
     password: new FormControl(""),
     confirmPassword: new FormControl("")
   })
-  constructor(private apiService:ApiService ){}
+
+  notiParam!:string;
+  constructor(private apiService:ApiService,private router:Router ){}
   
   onSubmit()
   {
@@ -31,8 +35,11 @@ export class SignupComponent {
         mail: this.signupForm.value.email,
         name: this.signupForm.value.username,
         password: this.signupForm.value.password
-      }).subscribe(value => console.log(value))
-      
+      }).subscribe(value => {
+        this.router.navigateByUrl("/login?noti=1")
+      }) 
+    }else{
+      this.notiParam = "2"
     }
   }
 }

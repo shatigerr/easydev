@@ -12,11 +12,12 @@ import { CustomInputComponent } from "../../UI/custom-input/custom-input.compone
 import { FormControl, FormGroup } from '@angular/forms';
 import Database from '../../../../types/Database';
 import { Router } from '@angular/router';
+import { NotificationComponent } from '../../UI/notification/notification.component';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [ProjectCardComponent, DialogModule, ButtonModule, InputTextModule, AvatarModule, CommonModule, CustomInputComponent,CustomInputComponent],
+  imports: [ProjectCardComponent, DialogModule, ButtonModule, InputTextModule, AvatarModule, CommonModule, CustomInputComponent,CustomInputComponent,NotificationComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
@@ -24,6 +25,7 @@ export class ProjectsComponent implements OnInit {
 
   projects: Project[] = []
   visible: boolean = false;
+  notiParam:string = ""
 
   projectForm = new FormGroup({
     projectName:new FormControl(""),
@@ -73,8 +75,13 @@ export class ProjectsComponent implements OnInit {
         idUser:idUser,
         iddatabase:res.id
       }).subscribe(res => {
-        this.projectForm.reset(this.projectForm.value)
+        this.visible=false
+        this.projects.push(res)
+        this.projectForm.reset()
+        this.notiParam = "3";
       })
+
+      
   
     })
 

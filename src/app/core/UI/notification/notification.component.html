@@ -1,0 +1,8 @@
+@if (visible) {
+    <button (click)="close()" type="button" [class]="color" class="fadeInRight fixed right-4 top-4 z-50 rounded-md px-4 py-2 text-white transition" >
+        <div class="flex justify-center items-center space-x-2">
+            <i class={{icon}}></i>
+            <p class="font-bold">{{text}}</p>
+        </div>
+    </button>
+}

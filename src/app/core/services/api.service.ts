@@ -11,7 +11,6 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
   //url ="http://localhost:5102/"
-  //url ="https://localhost:7010/" 
   //url ="https://localhost:7010/"
   url = "https://easydevapi.onrender.com/"  
 

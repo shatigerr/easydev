@@ -27,6 +27,11 @@
                     <form (submit)="onSubmit($event)" class="flex flex-col align-middle bg-neutral-900">
                         <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.projectName" placeHolder="Project name" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
                         <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.projectDescription" placeHolder="Description" icon="fa-solid fa-list-check" type="text" ></app-custom-input>
+                        <select [formControl]="projectForm.controls.dbEngine"  class="bg-white p-3 rounded-md mx-5 my-3" name="DB Engine" id="">
+                            <option value="MYSQL">MySQL</option>
+                            <option value="POSTGRESQL">PostgreSQL</option>
+                            <option value="SQLSERVER">SQLServer</option>
+                         </select>
                         <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbHost" placeHolder="Host" icon="fa-solid fa-database" type="text" ></app-custom-input>
                         <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbName" placeHolder="Database Name" icon="fa-solid fa-database" type="text" ></app-custom-input>
                         <app-custom-input class="modal mx-5 my-1" [control]="projectForm.controls.dbPort" placeHolder="port" icon="fa-solid fa-server" type="text" ></app-custom-input>

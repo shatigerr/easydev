@@ -9,7 +9,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { CustomInputComponent } from "../../UI/custom-input/custom-input.component";
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Database from '../../../../types/Database';
 import { Router } from '@angular/router';
 import { NotificationComponent } from '../../UI/notification/notification.component';
@@ -17,7 +17,7 @@ import { NotificationComponent } from '../../UI/notification/notification.compon
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [ProjectCardComponent, DialogModule, ButtonModule, InputTextModule, AvatarModule, CommonModule, CustomInputComponent,CustomInputComponent,NotificationComponent],
+  imports: [ProjectCardComponent, DialogModule, ButtonModule, InputTextModule, AvatarModule, CommonModule, CustomInputComponent,CustomInputComponent,NotificationComponent,ReactiveFormsModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
@@ -30,6 +30,7 @@ export class ProjectsComponent implements OnInit {
   projectForm = new FormGroup({
     projectName:new FormControl(""),
     projectDescription:new FormControl(""),
+    dbEngine:new FormControl("POSTGRESQL"),
     dbHost:new FormControl(""),
     dbName:new FormControl(""),
     dbPort:new FormControl(""),
@@ -59,7 +60,7 @@ export class ProjectsComponent implements OnInit {
 
     this.apiService.post<Database>("api/Database/",{
       host:this.projectForm.value.dbHost,
-      dbEngine:"PostgreSQL",
+      dbEngine:this.projectForm.value.dbEngine,
       password:this.projectForm.value.dbPassword,
       user:this.projectForm.value.dbUser,
       database1:this.projectForm.value.dbName,

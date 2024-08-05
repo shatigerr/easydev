@@ -1,9 +1,9 @@
 type User = {
     id:string,
-    createdAt:Date,
     name:string,
     email:string,
-    password:string
+    password:string,
+    activated:number
 }
 
 export default User;

@@ -8,12 +8,16 @@ import Database from '../../../../types/Database';
 import { DialogModule } from 'primeng/dialog';
 import { FormGroup,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CustomInputComponent } from '../../UI/custom-input/custom-input.component';
+import { CommonModule } from '@angular/common';
+import { BarChartComponent } from '../../UI/bar-chart/bar-chart.component';
+import ApiResponse from '../../../../types/ApiResponse';
+import Chart from '../../../../types/Chart';
 
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [EndpointComponent,DialogModule,CustomInputComponent,ReactiveFormsModule],
+  imports: [EndpointComponent,DialogModule,CustomInputComponent,ReactiveFormsModule,CommonModule,BarChartComponent],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })
@@ -26,6 +30,13 @@ export class ProjectDetailsComponent implements OnInit {
   response!:string
 
   visible:boolean=false
+
+  endpointsCard: boolean = true;
+  dbCard:boolean = false
+  chartCard:boolean = true
+
+  httpMethodChart:Chart = {labels:[],data:[]}
+  statusChart:Chart = {labels:[],data:[]}
 
   endpointForm = new FormGroup({
     httpMethod:new FormControl("GET"),
@@ -44,14 +55,50 @@ export class ProjectDetailsComponent implements OnInit {
     })
 
     this.apiService.get<Project>(`api/Project/details/${id}`).subscribe(res => {
-      
       this.project = res;
-      console.log(this.project);
+      
+      
+      let httpMethodData = this.getChartDataAndLabels(this.project.logs, 'type');
+      let statusData = this.getChartDataAndLabels(this.project.logs, 'status');
+
+      this.httpMethodChart = { labels: httpMethodData.labels, data: httpMethodData.data };
+      this.statusChart = { labels: statusData.labels, data: statusData.data };
+      
       
     });
 
     
+
     
+    
+  }
+
+  getChartDataAndLabels(group:Array<ApiResponse>,by:string){
+    let grouped = this.groupBy(group,by)
+    let labels = []
+    let data = []
+      for (const key in grouped) {
+        data.push(grouped[key].length)
+        labels.push(key)  
+      }
+
+    return {
+      data:data,
+      labels:labels
+    }
+    
+  }
+
+  groupBy(group:Array<ApiResponse>, by:string){
+    let grouped = group.reduce((result,current) => {
+      let cuerrentValue = current[by];
+      if(!result[cuerrentValue])result[cuerrentValue] = []
+
+      result[cuerrentValue].push(current)
+      return result
+    },{})
+
+    return grouped
   }
 
   onSubmit($event:Event){
@@ -75,6 +122,17 @@ export class ProjectDetailsComponent implements OnInit {
     this.project.endpoints = this.project.endpoints.filter(e => e.id != $event.id)
   }
 
+  handleEndpointCard(){
+    this.endpointsCard = !this.endpointsCard;
+  }
+
+  handleDBCard(){
+    this.dbCard = !this.dbCard
+  }
+
+  handleChartCard(){
+    this.chartCard = !this.chartCard
+  }
 
  
 

@@ -35,8 +35,13 @@ export class SignupComponent {
         mail: this.signupForm.value.email,
         name: this.signupForm.value.username,
         password: this.signupForm.value.password
-      }).subscribe(value => {
-        this.router.navigateByUrl("/login?noti=1")
+      }).subscribe({
+        next: (value) => {
+          this.router.navigateByUrl("/login?noti=1&msg=1")
+        },
+        error: (err) => {
+
+        }
       }) 
     }else{
       this.notiParam = "2"

@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
   constructor(private http:HttpClient) { }
-  //url ="http://localhost:5102/"
+  url ="http://localhost:5102/"
   //url ="https://localhost:7010/"
-  url = "https://easydevapi.onrender.com/"  
+  //url = "https://easydevapi.onrender.com/"  
 
   
   get<T>(url:string): Observable<T>{
@@ -29,5 +29,10 @@ export class ApiService {
   delete<T>(url:string): Observable<T>{
     url = `${this.url}${url}`
     return this.http.delete<T>(url);
+  }
+
+  put<T>(url:string,body:Object): Observable<T>{
+    url = `${this.url}${url}`
+    return this.http.put<T>(url,body);
   }
 }

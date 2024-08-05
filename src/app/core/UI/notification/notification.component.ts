@@ -11,22 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NotificationComponent implements OnInit {
   
-  @Input() param?:string;
-  text!:string;
+  @Input() param!:string;
+  @Input() text!:string;
   color!:string;
   icon!:string;
-  noti?:string="";
   visible:boolean = false;
 
   constructor(private route:ActivatedRoute){}
 
   ngOnInit(): void {
-    this.noti =  this.route.snapshot.queryParamMap.get("noti") ?? this.param;
-    if(this.noti){
-      this.getMessage(this.noti);
-      if(this.text) this.visible=true;
-      
-    }
+    this.getMessage(this.param)
   }
   
   close()
@@ -38,20 +32,13 @@ export class NotificationComponent implements OnInit {
   {
     switch(param){
       case "1":
-        this.text = "Account successfully created"
         this.color = "bg-succes"
         this.icon = "fa-solid fa-check"
         break;
       case "2":
-        this.text = "Password doesn't match"
         this.color = "bg-delete"
         this.icon = "fa-solid fa-x"
         break;
-      case "3":
-        this.text = "Project successfully created!"
-        this.color = "bg-succes"
-        this.icon = "fa-solid fa-check"
-        break;   
     }
   }
 }

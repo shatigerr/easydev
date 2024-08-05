@@ -1,0 +1,53 @@
+<main class="wrap">
+    <section class="container">
+      <div class="container__heading">
+        <h2>Terms & Conditions</h2>
+      </div>
+      <div class="container__content">
+        <p>Welcome to easydev {{mail}}. By accessing or using our website, products, and services (collectively, "Services"), you agree to comply with and be bound by these Terms and Conditions ("Terms"). Please read these Terms carefully.</p><br>
+        
+        <strong><h3 class="text-xl">1. Use of Services</h3></strong>
+        <p><strong>Eligibility:</strong> You must be at least 18 years old to use our Services. By using our Services, you represent and warrant that you meet this age requirement.</p>
+        <p><strong>User Account:</strong> You may need to create an account to use some of our Services. You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account. You agree to notify us immediately of any unauthorized use of your account.</p>
+        
+        
+        <strong><h3 class="text-xl">2. User Conduct</h3></strong>
+        <p>You agree not to use our Services for any unlawful purpose or in any way that could harm us or any third party. Prohibited activities include, but are not limited to:</p>
+        <ul>
+            <li>Violating any applicable laws or regulations.</li>
+            <li>Infringing on the intellectual property rights of others.</li>
+            <li>Transmitting harmful or malicious software.</li>
+            <li>Engaging in any activity that could damage, disable, or impair our Services.</li>
+        </ul>
+        
+        <strong><h3 class="text-xl">3. Intellectual Property</h3></strong>
+        <p>All content and materials available on our Services, including but not limited to text, graphics, logos, and software, are the property of easydev or our licensors and are protected by intellectual property laws. You may not use, reproduce, or distribute any content from our Services without our express written permission.</p>
+        
+        <strong><h3 class="text-xl">4. Disclaimer of Warranties</h3></strong>
+        <p>Our Services are provided "as is" and "as available" without any warranties of any kind, either express or implied. We do not warrant that our Services will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+        
+        <strong><h3 class="text-xl">5. Limitation of Liability</h3></strong>
+        <p>To the fullest extent permitted by law, easydev shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of our Services.</p>
+        
+        <strong><h3 class="text-xl">6. Indemnification</h3></strong>
+        <p>You agree to indemnify, defend, and hold harmless easydev and our affiliates, officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys' fees, arising out of or in any way connected with your use of our Services or your violation of these Terms.</p>
+        
+        <strong><h3 class="text-xl">7. Changes to Terms</h3></strong>
+        <p>We reserve the right to modify these Terms at any time. Any changes will be effective immediately upon posting on our website. Your continued use of our Services after any changes constitute your acceptance of the new Terms.</p>
+        
+        <strong><h3 class="text-xl">8. Governing Law</h3></strong>
+        <p>These Terms shall be governed by and construed in accordance with the laws of Spain, without regard to its conflict of law principles.</p>
+        
+        <strong><h3 class="text-xl">9. Contact Us</h3></strong>
+        <p>If you have any questions about these Terms, please contact us at pauamat888&commat; gmail.com.</p>
+    </div>
+      <div class="container__nav">
+        <small>By clicking 'Accept' you are agreeing to our terms and conditions.</small>
+        <button (click)="activateAccount()" class="button" >Accept</button>
+      </div>
+    </section>
+    @if (param) {
+
+      <app-notification [param]="param" [text]="text"></app-notification>
+    }
+  </main>

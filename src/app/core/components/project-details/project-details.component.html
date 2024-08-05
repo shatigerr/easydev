@@ -14,13 +14,29 @@
         </div>
     </nav>
 
-    <section class="bg-endpoint m-10 rounded-md p-5">
+    <section [ngClass]="{'h-24':!chartCard,'h-auto':chartCard}" class="bg-endpoint m-10 rounded-md p-5">
+        <div class="flex gap-2">
+            @if (chartCard) {<i (click)="handleChartCard()" class="fa-solid fa-chevron-up text-xl text-white"></i>}@else {<i (click)="handleChartCard()" class="fa-solid fa-chevron-down text-xl text-white"></i>}
+            <h2 class="text-white text-2xl" >Logs & Data</h2>
+        </div>
+        <div *ngIf="chartCard">
+            <div class="flex items-center justify-evenly">
+                <app-bar-chart class="w-5/12" chartTitle="Request with this method" [chartType]="'bar'" [chartlabels]="httpMethodChart.labels" [chartdata]="httpMethodChart.data"></app-bar-chart>
+                <app-bar-chart class="w-3/12" [chartType]="'doughnut'" [chartlabels]="statusChart.labels" [chartdata]="statusChart.data"></app-bar-chart>
+            </div>
+        </div>
+    </section>
+
+    <section [ngClass]="{'h-24':!endpointsCard,'h-auto':endpointsCard}" class="bg-endpoint m-10 rounded-md p-5">
         <header class="flex justify-between items-center w-full">
-            <h2 class="text-white text-2xl" >Endpoints</h2>
+            <div class="flex items-center gap-2">
+                @if (endpointsCard) {<i (click)="handleEndpointCard()" class="fa-solid fa-chevron-up text-xl text-white"></i>}@else {<i (click)="handleEndpointCard()" class="fa-solid fa-chevron-down text-xl text-white"></i>}
+                <h2 class="text-white text-2xl" >Endpoints</h2>
+            </div>
             <button (click)="visible=true" class="text-white p-3 bg-succes rounded-md">Create Endpoint</button>
         </header>
 
-        <div>
+        <div *ngIf="endpointsCard" >
             @for (item of project.endpoints; track $index) {
                 <app-endpoint ($endpoint)="onEvent($event)" key="{project key}"  [database]="project.iddatabaseNavigation" [endpoint]="item"></app-endpoint>
                 
@@ -28,52 +44,55 @@
         </div>
     </section>
 
-    <section class="bg-endpoint m-10 rounded-md p-5">
-        <header class="flex justify-between items-center w-full">
+    <section [ngClass]="{'h-24':!dbCard,'h-auto':dbCard}"  class="bg-endpoint m-10 rounded-md p-5">
+        <header class="flex gap-2 items-center w-full">
+            @if (dbCard) {<i (click)="handleDBCard()" class="fa-solid fa-chevron-up text-xl text-white"></i>}@else {<i (click)="handleDBCard()" class="fa-solid fa-chevron-down text-xl text-white"></i>}
             <h2 class="text-white text-2xl">Database Configuration</h2>
         </header>
+        <div *ngIf="dbCard">
 
-        <div class="flex mt-10">
-            <div class="w-3/12">
-                <label class="block text-white" for="">Host</label>
-                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.host" type="text">
+            <div class="flex mt-10">
+                <div class="w-3/12">
+                    <label class="block text-white" for="">Host</label>
+                    <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.host" type="text">
+                </div>
+                <div class="w-3/12 ml-3">
+                    <label class="block text-white" for="">DB Engine</label>
+                    <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.dbengine" type="text">
+                </div>
+                
+                <div class="w-3/12 ml-3">
+                    <label class="block text-white" for="">Port</label>
+                    <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.port" type="text">
+                </div>
             </div>
-            <div class="w-3/12 ml-3">
-                <label class="block text-white" for="">DB Engine</label>
-                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.dbengine" type="text">
+    
+            <div class="flex">
+                
+                <div class="w-4/12">
+                    <label class="block text-white" for="">User</label>
+                    <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.user" type="text">
+                </div>
+    
+                
+                <div class="w-4/12 ml-3">
+                    <label class="block text-white" for="">Password</label>
+                    <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.password" type="password">
+                </div>
             </div>
-            
-            <div class="w-3/12 ml-3">
-                <label class="block text-white" for="">Port</label>
-                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.port" type="text">
+    
+            <div>
+                
+                <div class="w-3/12">
+                    <label class="block text-white" for="">Database</label>
+                    <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.database1" type="text">
+                </div>
+    
             </div>
-        </div>
-
-        <div class="flex">
-            
-            <div class="w-4/12">
-                <label class="block text-white" for="">User</label>
-                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.user" type="text">
+            <div class="w-6/12">
+                <label class="block text-white" for="">Project key</label>
+                <input class="bg-discord text-white p-3 w-full" [value]="project.key" type="text">
             </div>
-
-            
-            <div class="w-4/12 ml-3">
-                <label class="block text-white" for="">Password</label>
-                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.password" type="password">
-            </div>
-        </div>
-
-        <div>
-            
-            <div class="w-3/12">
-                <label class="block text-white" for="">Database</label>
-                <input class="bg-discord text-white p-3 w-full" [value]="project.iddatabaseNavigation.database1" type="text">
-            </div>
-
-        </div>
-        <div class="w-6/12">
-            <label class="block text-white" for="">Project key</label>
-            <input class="bg-discord text-white p-3 w-full" [value]="project.key" type="text">
         </div>
 
     </section>

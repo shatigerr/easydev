@@ -20,6 +20,7 @@
             </a>
         </div>
     </form>
-    
-    <app-notification></app-notification>
+    @if (noti) {
+        <app-notification [param]="noti" [text]="notiText" ></app-notification>
+    }
 </main>

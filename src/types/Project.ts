@@ -1,5 +1,6 @@
 import Database from "./Database"
 import Endpoint from "./Endpoint"
+import Log from "./Log"
 
 type Project = {
     id:string,
@@ -10,7 +11,8 @@ type Project = {
     idUser:string,
     idDB:string,
     endpoints: Endpoint[],
-    iddatabaseNavigation:Database
+    iddatabaseNavigation:Database,
+    logs:Log[]
 
 }
 

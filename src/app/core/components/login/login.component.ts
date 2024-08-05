@@ -15,8 +15,8 @@ import { NotificationComponent } from '../../UI/notification/notification.compon
 })
 export class LoginComponent implements OnInit {
 
-  noti!: string;
-
+  noti!: string | null;
+  notiText!:string;
   loginForm = new FormGroup({
     mail: new FormControl(""),
     password: new FormControl("")
@@ -25,27 +25,37 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     
+    this.noti = this.route.snapshot.queryParamMap.get('noti');
+    this.notiText = this.route.snapshot.queryParamMap.get('msg') ?? "";
+    if(this.notiText=="1")
+    {
+      this.notiText = "Account successfully created, Activate your account!!";
+    }else if(this.notiText=="2")
+    {
+      this.notiText="Account Activated";
+    }
     
 
     
   }
 
   onSubmit(){
-
+    this.noti = null;
     this.apiService.post<User>("api/User",{
       email: this.loginForm.value.mail,
       password: this.loginForm.value.password
-    }).subscribe(res=> {
-      try{
-        localStorage.setItem("user",res.id)
-        this.router.navigate(["/projects/"+res.id])
-      }catch{
-        console.log("ERROR");
-        
+    }).subscribe({
+      next: (value) => {  
+        localStorage.setItem("user",value.id)
+        this.router.navigate(["/projects/"+value.id])
+                 
+      },
+      error:(err) => {
+        console.log(err["error"]);
+        this.noti = err["error"].noti
+        this.noti?.toString()
+        this.notiText = err["error"].message
       }
-      
-      
-    })
-  }
+      })}
 
 }

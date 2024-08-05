@@ -4,6 +4,7 @@ import { SignupComponent } from './core/components/signup/signup.component';
 import { ProjectsComponent } from './core/components/projects/projects.component';
 import { ProjectDetailsComponent } from './core/components/project-details/project-details.component';
 import { DocsComponent } from './core/components/docs/docs.component';
+import { AccountActivationComponent } from './core/components/account-activation/account-activation.component';
 
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
     { path: 'projects/:id', component: ProjectsComponent },
     { path: 'projects/:id/:projectid', component: ProjectDetailsComponent },
     { path: 'docs',component:DocsComponent},
+    { path: 'account',component:AccountActivationComponent},
     { path: '**', redirectTo: 'login' }
     
 ];
